@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Página del NFC (/sello?t=...)
+   ========================================================================== */
+
+.df-sello-pagina {
+  min-height: calc(100vh - var(--df-nav-alto));
+  background:
+    radial-gradient(80% 50% at 50% 0%, rgba(255, 255, 255, 0.8) 0%, transparent 70%),
+    var(--df-lila);
+  padding: 28px 16px 64px;
+  --df-fondo-tarjeta: var(--df-lila);
+}
+
+.df-sello-pagina__caja {
+  max-width: 440px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.df-sello-pagina__encabezado {
+  margin-bottom: 22px;
+}
+
+.df-sello-pagina__icono {
+  display: inline-grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--df-rosa);
+  font-size: 1.8rem;
+  box-shadow: var(--df-sombra-s);
+  margin-bottom: 12px;
+}
+
+.df-sello-pagina__encabezado h1 {
+  font-family: var(--df-display);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 8vw, 2.6rem);
+  line-height: 1;
+  color: var(--df-magenta);
+  margin: 0 0 8px;
+}
+
+.df-sello-pagina__encabezado p,
+.df-sello-pagina__texto {
+  margin: 0 auto;
+  max-width: 340px;
+  font-weight: 700;
+  color: var(--df-texto-suave);
+  line-height: 1.45;
+}
+
+.df-sello-pagina__texto {
+  margin-bottom: 24px;
+}
+
+.df-sello-pagina__encabezado--celebrar .df-sello-pagina__icono {
+  background: var(--df-hoja);
+  color: #fff;
+  animation: df-rebote 0.8s cubic-bezier(0.2, 1.8, 0.4, 1) both;
+}
+
+.df-sello-pagina__encabezado--celebrar h1 {
+  font-size: clamp(2.6rem, 12vw, 3.4rem);
+  color: var(--df-rosa);
+  text-shadow: 3px 3px 0 #fff;
+}
+
+@keyframes df-rebote {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.df-sello-pagina .df-tarjeta {
+  text-align: left;
+}
+
+.df-sello-pagina__links {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}

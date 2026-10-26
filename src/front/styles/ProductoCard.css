@@ -1,0 +1,251 @@
+/* ==========================================================================
+   Card de producto
+   ========================================================================== */
+
+.df-pcard {
+  scroll-margin-top: 150px; /* para que al llegar desde un favorito no quede tapada por la barra */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  border-radius: var(--df-radio);
+  border: 2px solid var(--df-lila-2);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+}
+
+.df-pcard:hover {
+  transform: translateY(-4px) rotate(-0.4deg);
+  border-color: var(--df-rosa);
+  box-shadow: var(--df-sombra);
+}
+
+/* ---------- foto ---------- */
+.df-pcard__foto {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--df-lila);
+  overflow: hidden;
+}
+
+.df-pcard__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.df-pcard:hover .df-pcard__foto img {
+  transform: scale(1.06);
+}
+
+.df-pcard__sin-foto {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.7) 0 18%, transparent 19%),
+    radial-gradient(circle at 75% 80%, rgba(61, 191, 208, 0.25) 0 22%, transparent 23%),
+    linear-gradient(160deg, var(--df-lila) 0%, var(--df-lila-2) 100%);
+}
+
+.df-pcard__sin-foto i {
+  font-size: 3.2rem;
+  color: var(--df-rosa);
+  filter: drop-shadow(0 4px 0 rgba(126, 14, 85, 0.2));
+}
+
+.df-pcard__etiqueta {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--df-amarillo);
+  color: var(--df-chocolate);
+  font-weight: 900;
+  font-size: 0.72rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  box-shadow: 0 3px 0 rgba(74, 36, 24, 0.25);
+}
+
+/* ---------- cuerpo ---------- */
+.df-pcard__cuerpo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 16px 18px 18px;
+}
+
+.df-pcard__nombre {
+  font-family: var(--df-display);
+  font-weight: 400;
+  font-size: 1.35rem;
+  line-height: 1.05;
+  color: var(--df-magenta);
+  margin: 0 0 6px;
+}
+
+.df-pcard__desc {
+  margin: 0 0 12px;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--df-texto-suave);
+}
+
+.df-pcard__incluye {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px;
+}
+
+.df-pcard__incluye li {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--df-lila);
+  color: var(--df-magenta-osc);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.df-pcard__precios {
+  margin-top: auto;
+  display: grid;
+  gap: 6px;
+}
+
+.df-pcard__fila {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 0.92rem;
+}
+
+.df-pcard__fila small {
+  display: block;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--df-texto-suave);
+}
+
+.df-pcard__puntos {
+  flex: 1;
+  min-width: 12px;
+  border-bottom: 2px dotted var(--df-lila-2);
+  transform: translateY(-4px);
+}
+
+.df-pcard__fila strong,
+.df-pcard__precio {
+  font-family: var(--df-display);
+  font-weight: 400;
+  color: #fff;
+  background: var(--df-magenta);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.df-pcard__precio {
+  justify-self: start;
+  font-size: 1.15rem;
+  padding: 5px 16px;
+}
+
+/* ---------- modo favorito (carrusel) ---------- */
+.df-pcard--favorito {
+  position: relative;
+  border: 0;
+  border-radius: var(--df-radio-l);
+  box-shadow: var(--df-sombra-s);
+}
+
+.df-pcard--favorito .df-pcard__foto {
+  aspect-ratio: 3 / 4;
+}
+
+.df-pcard__favorito-info {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px);
+}
+
+.df-pcard--favorito .df-pcard__nombre {
+  font-size: 1.15rem;
+  margin-bottom: 2px;
+}
+
+.df-pcard__desde {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--df-texto-suave);
+}
+
+.df-pcard__desde strong {
+  font-family: var(--df-display);
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: var(--df-texto);
+}
+
+/* ---------- celular: card horizontal (foto a la izquierda) para que el menú no sea eterno ---------- */
+@media (max-width: 560px) {
+  .df-pcard:not(.df-pcard--favorito) {
+    flex-direction: row;
+  }
+
+  .df-pcard:not(.df-pcard--favorito) .df-pcard__foto {
+    flex: 0 0 34%;
+    aspect-ratio: auto;
+    min-height: 100%;
+  }
+
+  .df-pcard:not(.df-pcard--favorito) .df-pcard__sin-foto i {
+    font-size: 2.2rem;
+  }
+
+  .df-pcard:not(.df-pcard--favorito) .df-pcard__etiqueta {
+    top: 8px;
+    left: 8px;
+    font-size: 0.62rem;
+    padding: 4px 8px;
+  }
+
+  .df-pcard__cuerpo {
+    padding: 14px;
+  }
+
+  .df-pcard__nombre {
+    font-size: 1.2rem;
+  }
+
+  .df-pcard__desc {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+
+  .df-pcard__incluye {
+    margin-bottom: 10px;
+  }
+
+  .df-pcard__incluye li {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+  }
+
+  .df-pcard__fila {
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,479 @@
+/* ==========================================================================
+   Tarjeta de fidelización · se ve como una tarjeta física con chispitas
+   ========================================================================== */
+
+.df-tarjeta {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+/* ---------- la "cara" de la tarjeta ---------- */
+.df-tarjeta__cara {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--df-radio-l);
+  padding: 22px 22px 20px;
+  color: #fff;
+  background:
+    /* chispitas */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cg fill-opacity='.3'%3E%3Crect x='14' y='18' width='14' height='5' rx='2.5' fill='%23ffcf4a' transform='rotate(35 21 20)'/%3E%3Crect x='70' y='10' width='14' height='5' rx='2.5' fill='%233dbfd0' transform='rotate(-20 77 12)'/%3E%3Crect x='108' y='46' width='14' height='5' rx='2.5' fill='%23ffffff' transform='rotate(60 115 48)'/%3E%3Crect x='40' y='70' width='14' height='5' rx='2.5' fill='%23ffffff' transform='rotate(-45 47 72)'/%3E%3Crect x='92' y='96' width='14' height='5' rx='2.5' fill='%23ffcf4a' transform='rotate(15 99 98)'/%3E%3Crect x='10' y='112' width='14' height='5' rx='2.5' fill='%233dbfd0' transform='rotate(75 17 114)'/%3E%3Ccircle cx='60' cy='120' r='3' fill='%23ffffff'/%3E%3Ccircle cx='124' cy='16' r='3' fill='%23ffcf4a'/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(120% 90% at 100% 0%, #ff6fb0 0%, transparent 55%),
+    linear-gradient(150deg, var(--df-rosa) 0%, var(--df-magenta) 70%, var(--df-magenta-osc) 100%);
+  box-shadow: 0 22px 40px -18px rgba(126, 14, 85, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Muescas laterales tipo ticket */
+.df-tarjeta__cara::before,
+.df-tarjeta__cara::after {
+  content: "";
+  position: absolute;
+  top: 58px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--df-fondo-tarjeta, var(--df-lila));
+}
+
+.df-tarjeta__cara::before {
+  left: -11px;
+}
+
+.df-tarjeta__cara::after {
+  right: -11px;
+}
+
+.df-tarjeta__marca {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.4);
+}
+
+.df-tarjeta__logo {
+  font-family: var(--df-script);
+  font-size: 1.45rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-shadow: 0 2px 0 var(--df-magenta-osc);
+}
+
+@media (max-width: 380px) {
+  .df-tarjeta__logo {
+    font-size: 1.2rem;
+  }
+
+  .df-tarjeta__tipo {
+    font-size: 0.62rem;
+    letter-spacing: 1px;
+  }
+}
+
+.df-tarjeta__tipo,
+.df-tarjeta__codigo {
+  font-weight: 900;
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+
+.df-tarjeta__codigo {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 1px;
+}
+
+.df-tarjeta__hola {
+  font-family: var(--df-display);
+  font-size: 1.7rem;
+  line-height: 1;
+  margin: 0 0 16px;
+}
+
+/* ---------- sellos ---------- */
+.df-tarjeta__sellos {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 5), 1fr);
+  gap: clamp(8px, 2.4vw, 12px);
+}
+
+.df-tarjeta__progreso {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  margin: 18px 0 12px;
+  overflow: hidden;
+}
+
+.df-tarjeta__progreso span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--df-amarillo), #fff3c4);
+  transition: width 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.df-tarjeta__estado {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.98rem;
+  line-height: 1.35;
+}
+
+.df-tarjeta__estado strong {
+  font-weight: 900;
+}
+
+.df-tarjeta__cara--premio {
+  animation: df-tarjeta-brillo 2.4s ease-in-out infinite;
+}
+
+@keyframes df-tarjeta-brillo {
+  0%,
+  100% {
+    box-shadow: 0 22px 40px -18px rgba(126, 14, 85, 0.65), 0 0 0 0 rgba(255, 207, 74, 0);
+  }
+  50% {
+    box-shadow: 0 22px 40px -18px rgba(126, 14, 85, 0.65), 0 0 0 8px rgba(255, 207, 74, 0.55);
+  }
+}
+
+/* ---------- avisos debajo de la tarjeta ---------- */
+.df-tarjeta__aviso {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: var(--df-radio);
+  background: #fff;
+  box-shadow: var(--df-sombra-s);
+}
+
+.df-tarjeta__aviso p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.df-tarjeta__aviso--premio {
+  background: var(--df-amarillo);
+  color: var(--df-chocolate);
+}
+
+.df-tarjeta__aviso--premio > i {
+  font-size: 1.6rem;
+  color: var(--df-magenta);
+}
+
+.df-tarjeta__nfc {
+  position: relative;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--df-turquesa);
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+.df-tarjeta__nfc .fa-wifi {
+  position: absolute;
+  top: 4px;
+  right: 3px;
+  font-size: 0.7rem;
+  transform: rotate(45deg);
+  animation: df-nfc-pulso 1.6s ease-in-out infinite;
+}
+
+@keyframes df-nfc-pulso {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.df-tarjeta__pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-top: 14px;
+  padding: 0 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--df-texto-suave);
+}
+
+.df-tarjeta__pie i {
+  color: var(--df-rosa);
+  margin-right: 2px;
+}
+
+.df-tarjeta__pie .df-link {
+  margin-left: auto;
+  font-size: 0.85rem;
+}
+
+/* ---------- formulario ---------- */
+.df-tarjeta--form {
+  background: #fff;
+  border-radius: var(--df-radio-l);
+  box-shadow: var(--df-sombra);
+  --df-fondo-tarjeta: #fff;
+}
+
+.df-tarjeta__cara--form {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-bottom: 24px;
+}
+
+.df-tarjeta__form-titulo {
+  font-family: var(--df-display);
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1;
+  margin: 0 0 8px;
+}
+
+.df-tarjeta__form-texto {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.df-tarjeta__bonus {
+  display: block;
+  margin-top: 8px;
+  font-weight: 800;
+  color: var(--df-amarillo);
+}
+
+.df-tarjeta__form-cuerpo {
+  padding: 20px 20px 22px;
+}
+
+.df-form {
+  display: grid;
+  gap: 14px;
+}
+
+.df-form__intro {
+  margin: 0;
+  font-weight: 700;
+  color: var(--df-texto-suave);
+  line-height: 1.45;
+}
+
+.df-campo {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+
+.df-campo span {
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--df-magenta);
+  letter-spacing: 0.4px;
+}
+
+.df-campo input {
+  width: 100%;
+  min-height: 54px;
+  border: 2px solid var(--df-lila-2);
+  border-radius: 16px;
+  padding: 14px 16px;
+  font: inherit;
+  font-size: 16px; /* evita que el iPhone haga zoom */
+  font-weight: 700;
+  color: var(--df-texto);
+  background: var(--df-crema);
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.df-campo input::placeholder {
+  color: #c4a3bb;
+  font-weight: 600;
+}
+
+.df-campo input:focus {
+  outline: none;
+  border-color: var(--df-rosa);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(236, 58, 143, 0.15);
+}
+
+/* ---------- casillas grandes para el dedo ---------- */
+.df-opcion {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 14px;
+  min-height: 56px;
+  border-radius: 16px;
+  border: 2px solid var(--df-lila-2);
+  background: var(--df-crema);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--df-texto);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.df-opcion input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.df-opcion__caja {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 9px;
+  border: 2px solid var(--df-lila-2);
+  background: #fff;
+  color: transparent;
+  font-size: 0.85rem;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.df-opcion--activa {
+  border-color: var(--df-rosa);
+  background: #fff;
+}
+
+.df-opcion--activa .df-opcion__caja {
+  background: var(--df-rosa);
+  border-color: var(--df-rosa);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.df-opcion input:focus-visible + .df-opcion__caja {
+  outline: 3px solid var(--df-turquesa);
+  outline-offset: 2px;
+}
+
+.df-opcion a {
+  color: var(--df-magenta);
+  font-weight: 900;
+}
+
+.df-opcion em {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--df-texto-suave);
+}
+
+.df-form__guardado {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #e5f7f9;
+  color: var(--df-turquesa-osc);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.df-form__guardado i {
+  margin-top: 2px;
+  font-size: 1rem;
+}
+
+.df-form__enviar {
+  min-height: 58px;
+  font-size: 1.08rem;
+}
+
+.df-form__error {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #ffe8f1;
+  color: var(--df-magenta-osc);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.df-form__alterno {
+  margin: 4px 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--df-texto-suave);
+}
+
+/* ---------- cargando ---------- */
+.df-tarjeta__cara--cargando .df-tarjeta__logo {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.df-sello--esqueleto {
+  border-style: solid;
+  animation: df-esqueleto 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes df-esqueleto {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+
+/* ---------- confeti ---------- */
+.df-confeti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  overflow: hidden;
+}
+
+.df-confeti span {
+  position: absolute;
+  top: -20px;
+  width: 7px;
+  height: 16px;
+  border-radius: 4px;
+  animation: df-caer linear forwards;
+}
+
+@keyframes df-caer {
+  from {
+    transform: translateY(0) rotate(var(--rot));
+    opacity: 1;
+  }
+  to {
+    transform: translateY(105vh) rotate(calc(var(--rot) + 540deg));
+    opacity: 0.9;
+  }
+}

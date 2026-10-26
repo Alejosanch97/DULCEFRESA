@@ -1,0 +1,128 @@
+/* ==========================================================================
+   Card de favorito (estilo linktree / collabs)
+   ========================================================================== */
+
+.df-fav {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  border-radius: 26px;
+  border: 4px solid #fff;
+  overflow: hidden;
+  background: var(--df-lila-2);
+  box-shadow: 0 16px 28px -18px rgba(181, 21, 122, 0.7);
+  text-decoration: none;
+  color: #fff;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease;
+}
+
+.df-fav:active {
+  transform: scale(0.97);
+}
+
+.df-fav__foto,
+.df-fav__sin-foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.df-fav__sin-foto {
+  display: grid;
+  place-items: center;
+  padding-bottom: 30%;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.65) 0 16%, transparent 17%),
+    radial-gradient(circle at 80% 55%, rgba(61, 191, 208, 0.3) 0 20%, transparent 21%),
+    linear-gradient(160deg, var(--df-lila) 0%, var(--df-lila-2) 100%);
+}
+
+.df-fav__sin-foto i {
+  font-size: 2.6rem;
+  color: var(--df-rosa);
+}
+
+/* degradado para que el texto se lea sobre cualquier foto */
+.df-fav::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 38%, rgba(126, 14, 85, 0.88) 100%);
+  pointer-events: none;
+}
+
+.df-fav__chip {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  left: 10px;
+  max-width: calc(100% - 20px);
+  padding: 6px 11px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 0.64rem;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.df-fav__chip--rosa {
+  background: var(--df-rosa);
+  color: #fff;
+}
+
+.df-fav__chip--turquesa {
+  background: var(--df-turquesa);
+  color: #fff;
+}
+
+.df-fav__chip--amarillo {
+  background: var(--df-amarillo);
+  color: var(--df-chocolate);
+}
+
+.df-fav__precio {
+  font-size: 0.78rem;
+  font-weight: 700;
+  opacity: 0.95;
+}
+
+.df-fav__precio b {
+  font-family: var(--df-display);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.df-fav__info {
+  position: absolute;
+  z-index: 1;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  gap: 4px;
+}
+
+.df-fav__info strong {
+  font-family: var(--df-display);
+  font-weight: 400;
+  font-size: 1.15rem;
+  line-height: 1.05;
+}
+
+.df-fav__ver {
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--df-amarillo);
+}
+
+.df-fav__ver i {
+  margin-left: 4px;
+}

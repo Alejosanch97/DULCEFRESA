@@ -1,0 +1,142 @@
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.df-footer {
+  position: relative;
+  background: var(--df-magenta);
+  color: #fff;
+  padding-bottom: 28px;
+}
+
+.df-footer__goteo {
+  height: 64px;
+}
+
+.df-footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 36px;
+  padding-top: 36px;
+  padding-bottom: 40px;
+}
+
+.df-footer__marca p {
+  margin: 16px 0 18px;
+  max-width: 300px;
+  opacity: 0.9;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.df-footer .df-logo__circulo {
+  box-shadow: 0 0 0 2px #fff;
+}
+
+.df-footer__redes {
+  display: flex;
+  gap: 10px;
+}
+
+.df-footer__redes a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 1.3rem;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.df-footer__redes a:hover {
+  background: var(--df-turquesa);
+  transform: translateY(-3px);
+}
+
+.df-footer__bloque h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+  font-family: var(--df-display);
+  font-weight: 400;
+  font-size: 1.35rem;
+}
+
+.df-footer__bloque h3 i {
+  font-size: 0.9em;
+  color: var(--df-amarillo);
+}
+
+.df-footer__bloque p {
+  margin: 0 0 14px;
+  opacity: 0.9;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.df-footer__bloque ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.df-footer__bloque li {
+  display: grid;
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+.df-footer__bloque li strong {
+  font-weight: 900;
+}
+
+.df-footer__link {
+  font-weight: 900;
+  text-decoration: none;
+  color: var(--df-amarillo);
+}
+
+.df-footer__link:hover {
+  color: #fff;
+}
+
+.df-footer .df-btn--blanco {
+  padding: 11px 20px;
+  font-size: 0.92rem;
+  box-shadow: 0 4px 0 var(--df-magenta-osc);
+}
+
+.df-footer__legal {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 20px;
+  border-top: 2px dashed rgba(255, 255, 255, 0.3);
+  font-size: 0.85rem;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .df-footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .df-footer__marca {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .df-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}

@@ -1,0 +1,224 @@
+/* ==========================================================================
+   DULCE FRESA · estilos globales y paleta de marca
+   Colores tomados del logo (fucsia + turquesa) y de las pantallas del menú (lila).
+   Todas las clases propias usan el prefijo .df- para no chocar con Bootstrap.
+   ========================================================================== */
+
+:root {
+  /* Marca */
+  --df-rosa: #ec3a8f;
+  --df-magenta: #b5157a;
+  --df-magenta-osc: #7e0e55;
+  --df-lila: #f7e3f4;
+  --df-lila-2: #efcdea;
+  --df-crema: #fff8fc;
+  --df-turquesa: #3dbfd0;
+  --df-turquesa-osc: #1b8a9b;
+  --df-chocolate: #4a2418;
+  --df-amarillo: #ffcf4a;
+  --df-hoja: #5fb35f;
+
+  /* Texto */
+  --df-texto: #3a1630;
+  --df-texto-suave: #7a5470;
+
+  /* Tipografía */
+  --df-display: "Lilita One", "Nunito", system-ui, sans-serif;
+  --df-script: "Pacifico", cursive;
+  --df-body: "Nunito", system-ui, -apple-system, sans-serif;
+
+  /* Formas */
+  --df-radio-s: 12px;
+  --df-radio: 22px;
+  --df-radio-l: 32px;
+  --df-sombra: 0 14px 34px -16px rgba(126, 14, 85, 0.45);
+  --df-sombra-s: 0 6px 16px -8px rgba(126, 14, 85, 0.35);
+  --df-ancho: 1180px;
+  --df-nav-alto: 60px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--df-nav-alto) + 12px);
+}
+
+body {
+  margin: 0;
+  font-family: var(--df-body);
+  background: var(--df-crema);
+  color: var(--df-texto);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- utilidades ---------- */
+.df-contenedor {
+  width: 100%;
+  max-width: var(--df-ancho);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.df-seccion {
+  padding: 72px 0;
+  position: relative;
+}
+
+.df-titulo {
+  font-family: var(--df-display);
+  font-weight: 400;
+  color: var(--df-magenta);
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1.02;
+  margin: 0 0 12px;
+  letter-spacing: 0.5px;
+}
+
+.df-subtitulo {
+  color: var(--df-texto-suave);
+  font-size: 1.05rem;
+  margin: 0 0 32px;
+  max-width: 560px;
+}
+
+.df-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 900;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--df-turquesa-osc);
+  margin-bottom: 10px;
+}
+
+/* ---------- botones ---------- */
+.df-btn {
+  --bg: var(--df-rosa);
+  --fg: #fff;
+  --base: var(--df-magenta-osc);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 26px;
+  font-family: var(--df-body);
+  font-weight: 900;
+  font-size: 1rem;
+  line-height: 1.1;
+  background: var(--bg);
+  color: var(--fg);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 5px 0 var(--base);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.df-btn:hover {
+  color: var(--fg);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 var(--base);
+}
+
+.df-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 var(--base);
+}
+
+.df-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+  transform: none;
+}
+
+.df-btn--turquesa {
+  --bg: var(--df-turquesa);
+  --base: var(--df-turquesa-osc);
+}
+
+.df-btn--blanco {
+  --bg: #fff;
+  --fg: var(--df-magenta);
+  --base: var(--df-lila-2);
+}
+
+.df-btn--bloque {
+  width: 100%;
+}
+
+.df-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--df-magenta);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* Gota de crema usada como divisor entre secciones */
+.df-goteo {
+  display: block;
+  width: 100%;
+  height: 56px;
+  margin-bottom: -1px;
+}
+
+/* ---------- accesibilidad ---------- */
+.df-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 3px solid var(--df-turquesa);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .df-seccion {
+    padding: 52px 0;
+  }
+}
+
+/* Flecha diagonal ↗ (estilo linktree) */
+.df-flecha {
+  transform: rotate(-45deg);
+}

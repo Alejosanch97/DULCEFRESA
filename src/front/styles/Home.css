@@ -1,0 +1,786 @@
+/* ==========================================================================
+   HOME · linktree para celular
+   Una sola columna (máx. 460px). En computador se ve centrada igual que en el celular.
+   ========================================================================== */
+
+.df-lt {
+  min-height: 100dvh;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg fill-opacity='.18'%3E%3Crect x='20' y='24' width='14' height='5' rx='2.5' fill='%23ec3a8f' transform='rotate(35 27 26)'/%3E%3Crect x='96' y='16' width='14' height='5' rx='2.5' fill='%233dbfd0' transform='rotate(-20 103 18)'/%3E%3Crect x='124' y='96' width='14' height='5' rx='2.5' fill='%23ffcf4a' transform='rotate(60 131 98)'/%3E%3Crect x='44' y='112' width='14' height='5' rx='2.5' fill='%23b5157a' transform='rotate(-45 51 114)'/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(90% 40% at 50% 0%, rgba(255, 255, 255, 0.9) 0%, transparent 70%),
+    linear-gradient(180deg, var(--df-lila) 0%, #f9d7ec 100%);
+  background-attachment: fixed;
+  --df-fondo-tarjeta: var(--df-lila); /* color de las muescas de la tarjeta */
+}
+
+.df-lt__col {
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+  padding: calc(28px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom));
+  display: grid;
+  gap: 22px;
+}
+
+/* =============================================================== PERFIL */
+.df-lt__perfil {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+/* logo animado */
+.df-lt__logo {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  margin-bottom: 10px;
+  animation: df-lt-aparecer 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+.df-lt__logo-anillo {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    var(--df-rosa) 0 12deg,
+    transparent 12deg 24deg,
+    var(--df-amarillo) 24deg 36deg,
+    transparent 36deg 48deg,
+    var(--df-turquesa) 48deg 60deg,
+    transparent 60deg 72deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 5px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 5px));
+  animation: df-lt-girar 14s linear infinite;
+}
+
+.df-lt__logo-circulo {
+  position: absolute;
+  inset: 4px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--df-turquesa);
+  border: 5px solid #fff;
+  box-shadow: 0 0 0 4px var(--df-rosa), 0 14px 24px -10px rgba(126, 14, 85, 0.55);
+  color: #fff;
+  font-size: 2.6rem;
+  overflow: hidden;
+}
+
+.df-lt__logo-circulo i {
+  animation: df-lt-bambolear 2.8s ease-in-out infinite;
+}
+
+.df-lt__logo-circulo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.df-lt__logo-fresa {
+  position: absolute;
+  width: 30px;
+  filter: drop-shadow(0 4px 4px rgba(126, 14, 85, 0.25));
+  animation: df-lt-flotar 4s ease-in-out infinite;
+}
+
+.df-lt__logo-fresa--1 {
+  top: -6px;
+  right: -22px;
+}
+
+.df-lt__logo-fresa--2 {
+  bottom: 2px;
+  left: -24px;
+  width: 22px;
+  animation-delay: -2s;
+}
+
+/* título letra por letra */
+.df-lt__titulo {
+  margin: 0;
+  font-family: var(--df-script);
+  font-weight: 400;
+  font-size: clamp(2.9rem, 14vw, 3.6rem);
+  line-height: 1.25;
+  color: var(--df-rosa);
+  text-shadow: 2px 3px 0 #fff, 4px 6px 0 rgba(181, 21, 122, 0.18);
+  white-space: nowrap;
+}
+
+.df-lt__letra {
+  display: inline-block;
+  --d: calc(var(--i) * 60ms);
+  animation:
+    df-lt-caer 0.7s cubic-bezier(0.2, 1.5, 0.4, 1) var(--d) both,
+    df-lt-ola 3.2s ease-in-out calc(1.2s + var(--d)) infinite;
+}
+
+.df-lt__espacio {
+  display: inline-block;
+  width: 0.28em;
+}
+
+.df-lt__sub {
+  margin: 2px 0 14px;
+  font-family: var(--df-display);
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--df-magenta);
+}
+
+.df-lt__como {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 2px solid rgba(181, 21, 122, 0.25);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--df-magenta);
+  font-weight: 900;
+  font-size: 0.88rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.df-lt__como:active {
+  transform: scale(0.96);
+}
+
+/* =============================================================== CTA SIN TARJETA */
+.df-lt__cta {
+  text-align: center;
+}
+
+.df-lt__cta-titulo {
+  margin: 0 0 14px;
+  font-family: var(--df-display);
+  font-size: 1.9rem;
+  line-height: 1;
+}
+
+.df-lt__cta-sellos {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  max-width: 300px;
+  margin: 0 auto 14px;
+}
+
+.df-lt__cta-texto {
+  margin: 0 0 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.df-lt__cta-btn {
+  min-height: 58px;
+  font-size: 1.02rem;
+  animation: df-lt-latido 2.4s ease-in-out 1.6s infinite;
+}
+
+.df-lt__cta-alterno {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--df-texto-suave);
+}
+
+/* =============================================================== LINKS */
+.df-lt__links {
+  display: grid;
+  gap: 12px;
+}
+
+.df-lt__link,
+.df-lt__ubicacion {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 26px;
+  border: 3px solid #fff;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 14px 28px -20px rgba(181, 21, 122, 0.6);
+  text-decoration: none;
+  color: var(--df-texto);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease;
+}
+
+.df-lt__link:active {
+  transform: scale(0.97);
+}
+
+.df-lt__link-icono {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  color: #fff;
+  font-size: 1.45rem;
+}
+
+.df-lt__link-icono--rosa {
+  background: var(--df-rosa);
+}
+
+.df-lt__link-icono--turquesa {
+  background: var(--df-turquesa);
+}
+
+.df-lt__link-icono--amarillo {
+  background: var(--df-amarillo);
+  color: var(--df-chocolate);
+}
+
+.df-lt__link-icono--instagram {
+  background: radial-gradient(circle at 30% 110%, #ffd776 0%, #f9845b 30%, #e1306c 60%, #833ab4 100%);
+}
+
+.df-lt__link-icono--whatsapp {
+  background: #25d366;
+}
+
+.df-lt__link-texto {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.df-lt__link-etiqueta {
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--df-rosa);
+}
+
+.df-lt__link-texto strong {
+  font-family: var(--df-display);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.1;
+  color: var(--df-texto);
+  overflow-wrap: anywhere;
+}
+
+.df-lt__link-detalle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--df-texto-suave);
+}
+
+.df-lt__link-flecha {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--df-lila);
+  color: var(--df-magenta);
+}
+
+/* =============================================================== FAVORITOS */
+.df-lt__seccion-cab {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 4px 4px 12px;
+}
+
+.df-lt__seccion-cab h2 {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--df-rosa);
+}
+
+.df-lt__toca {
+  font-family: var(--df-script);
+  font-size: 1.15rem;
+  color: var(--df-magenta-osc);
+}
+
+.df-lt__toca i {
+  font-size: 0.9rem;
+  margin-left: 2px;
+}
+
+.df-lt__fav-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* =============================================================== UBICACIÓN */
+.df-lt__ubicacion {
+  display: grid;
+  gap: 12px;
+}
+
+.df-lt__ubi-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.df-lt__horarios {
+  list-style: none;
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 16px;
+  background: var(--df-crema);
+  display: grid;
+  gap: 4px;
+  font-size: 0.88rem;
+}
+
+.df-lt__horarios li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.df-lt__horarios strong {
+  font-weight: 900;
+  color: var(--df-magenta);
+}
+
+/* ---------- radar de ubicación (al tocarlo abre Google Maps) ---------- */
+.df-radar {
+  display: grid;
+  grid-template-columns: 128px 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  border-radius: 22px;
+  background:
+    radial-gradient(120% 140% at 0% 50%, #5a0c40 0%, transparent 60%),
+    linear-gradient(135deg, #3a1630 0%, #24091c 100%);
+  color: #fff;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease;
+}
+
+.df-radar:active {
+  transform: scale(0.97);
+}
+
+.df-radar__pantalla {
+  position: relative;
+  width: 128px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle, #4d0f3a 0%, #2a0920 70%);
+  box-shadow: 0 0 0 3px rgba(236, 58, 143, 0.55), 0 0 26px rgba(236, 58, 143, 0.45),
+    inset 0 0 22px rgba(0, 0, 0, 0.6);
+}
+
+/* anillos y cruz */
+.df-radar__anillo {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+}
+
+.df-radar__anillo--1 {
+  inset: 18%;
+}
+
+.df-radar__anillo--2 {
+  inset: 36%;
+}
+
+.df-radar__cruz::before,
+.df-radar__cruz::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.df-radar__cruz::before {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+}
+
+.df-radar__cruz::after {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+}
+
+/* barrido que gira */
+.df-radar__barrido {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(236, 58, 143, 0) 0deg, rgba(236, 58, 143, 0) 290deg,
+      rgba(236, 58, 143, 0.25) 330deg, rgba(255, 140, 200, 0.75) 360deg);
+  animation: df-radar-girar 3s linear infinite;
+}
+
+/* "objetivos" que se encienden cuando pasa el barrido */
+.df-radar__punto {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--df-amarillo);
+  box-shadow: 0 0 10px var(--df-amarillo);
+  opacity: 0;
+  animation: df-radar-blip 3s linear infinite;
+}
+
+.df-radar__punto--1 {
+  left: 72%;
+  top: 26%;
+  animation-delay: 0.4s;
+}
+
+.df-radar__punto--2 {
+  left: 24%;
+  top: 70%;
+  animation-delay: 1.9s;
+  background: var(--df-turquesa);
+  box-shadow: 0 0 10px var(--df-turquesa);
+}
+
+.df-radar__punto--3 {
+  left: 30%;
+  top: 30%;
+  animation-delay: 2.5s;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+}
+
+/* onda que sale del centro */
+.df-radar__onda {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  border: 2px solid var(--df-rosa);
+  animation: df-radar-onda 2s ease-out infinite;
+}
+
+/* la heladería en el centro */
+.df-radar__pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  background: var(--df-turquesa);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 3px var(--df-rosa), 0 0 16px rgba(61, 191, 208, 0.8);
+  color: #fff;
+  font-size: 0.85rem;
+  animation: df-lt-bambolear 2.8s ease-in-out infinite;
+}
+
+/* texto */
+.df-radar__texto {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.df-radar__estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #7ee8f2;
+}
+
+.df-radar__led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ee08a;
+  box-shadow: 0 0 8px #4ee08a;
+  animation: df-radar-led 1.2s ease-in-out infinite;
+}
+
+.df-radar__texto strong {
+  font-family: var(--df-display);
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.1;
+}
+
+.df-radar__ayuda {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.df-radar__ayuda i {
+  margin-left: 4px;
+  color: var(--df-amarillo);
+}
+
+@keyframes df-radar-girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes df-radar-blip {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  4% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+  45% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+}
+
+@keyframes df-radar-onda {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+
+@keyframes df-radar-led {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 360px) {
+  .df-radar {
+    grid-template-columns: 104px 1fr;
+    gap: 12px;
+  }
+
+  .df-radar__pantalla {
+    width: 104px;
+  }
+}
+
+.df-lt__llegar {
+  min-height: 52px;
+}
+
+/* =============================================================== PIE */
+.df-lt__pie {
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--df-texto-suave);
+  padding-top: 4px;
+}
+
+.df-lt__pie i {
+  color: var(--df-rosa);
+}
+
+/* =============================================================== HOJA "CÓMO FUNCIONA" */
+.df-como__pasos {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.df-como__pasos li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.df-como__pasos strong {
+  display: block;
+  font-family: var(--df-display);
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: var(--df-magenta);
+  margin-bottom: 2px;
+}
+
+.df-como__pasos p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--df-texto-suave);
+}
+
+.df-como__icono {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.df-como__icono--turquesa {
+  background: var(--df-turquesa);
+}
+
+.df-como__icono--rosa {
+  background: var(--df-rosa);
+}
+
+.df-como__icono--amarillo {
+  background: var(--df-amarillo);
+  color: var(--df-chocolate);
+}
+
+.df-como__nota {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--df-lila);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--df-magenta-osc);
+}
+
+.df-como__nota i {
+  margin-top: 2px;
+  color: var(--df-amarillo);
+}
+
+/* =============================================================== ANIMACIONES */
+@keyframes df-lt-caer {
+  from {
+    transform: translateY(-60px) rotate(-20deg);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes df-lt-ola {
+  0%,
+  70%,
+  100% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes df-lt-aparecer {
+  from {
+    transform: scale(0.3) rotate(-30deg);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes df-lt-girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes df-lt-bambolear {
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg) translateY(-3px);
+  }
+}
+
+@keyframes df-lt-flotar {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-12deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(10deg);
+  }
+}
+
+@keyframes df-lt-latido {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+/* celulares pequeños (iPhone SE, etc.) */
+@media (max-width: 360px) {
+  .df-lt__link-icono {
+    width: 48px;
+    height: 48px;
+    font-size: 1.25rem;
+  }
+
+  .df-lt__link-texto strong {
+    font-size: 1.1rem;
+  }
+
+  .df-lt__link-flecha {
+    width: 38px;
+    height: 38px;
+  }
+}

@@ -1,0 +1,113 @@
+/* ==========================================================================
+   Hoja inferior (bottom sheet)
+   ========================================================================== */
+
+.df-hoja {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.df-hoja__fondo {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: rgba(58, 22, 48, 0.45);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  animation: df-hoja-fondo 0.25s ease both;
+}
+
+.df-hoja__panel {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: 92dvh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 28px 28px 0 0;
+  box-shadow: 0 -18px 40px -20px rgba(126, 14, 85, 0.5);
+  padding-bottom: env(safe-area-inset-bottom);
+  animation: df-hoja-subir 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1) both;
+}
+
+.df-hoja__agarre {
+  width: 44px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--df-lila-2);
+  margin: 10px auto 0;
+}
+
+.df-hoja__cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 18px 6px 22px;
+}
+
+.df-hoja__cabecera h2 {
+  margin: 0;
+  font-family: var(--df-display);
+  font-weight: 400;
+  font-size: 1.55rem;
+  color: var(--df-magenta);
+}
+
+.df-hoja__cerrar {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  border: 0;
+  border-radius: 50%;
+  background: var(--df-lila);
+  color: var(--df-magenta);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.df-hoja__contenido {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px 22px 24px;
+}
+
+@keyframes df-hoja-subir {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes df-hoja-fondo {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* En pantallas grandes se ve como una ventana centrada */
+@media (min-width: 640px) {
+  .df-hoja {
+    align-items: center;
+  }
+
+  .df-hoja__panel {
+    border-radius: 28px;
+    max-height: 86vh;
+  }
+}

@@ -1,0 +1,65 @@
+/* ==========================================================================
+   Barra de las páginas internas
+   ========================================================================== */
+
+.df-barra {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: var(--df-nav-alto);
+  padding: 0 14px;
+  padding-top: env(safe-area-inset-top);
+  background: rgba(255, 248, 252, 0.9);
+  backdrop-filter: saturate(1.4) blur(12px);
+  -webkit-backdrop-filter: saturate(1.4) blur(12px);
+  box-shadow: 0 6px 20px -16px rgba(126, 14, 85, 0.5);
+}
+
+.df-barra__volver,
+.df-barra__logo {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  text-decoration: none;
+}
+
+.df-barra__volver {
+  background: var(--df-lila);
+  color: var(--df-magenta);
+  font-size: 1.05rem;
+}
+
+.df-barra__volver:active {
+  transform: scale(0.94);
+}
+
+.df-barra__titulo {
+  flex: 1;
+  text-align: center;
+  font-family: var(--df-display);
+  font-size: 1.35rem;
+  color: var(--df-magenta);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.df-barra__logo {
+  background: var(--df-turquesa);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px var(--df-rosa);
+  color: #fff;
+  overflow: hidden;
+}
+
+.df-barra__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

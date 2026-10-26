@@ -1,0 +1,235 @@
+/* ==========================================================================
+   Navbar
+   ========================================================================== */
+
+.df-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 248, 252, 0.86);
+  backdrop-filter: saturate(1.4) blur(12px);
+  -webkit-backdrop-filter: saturate(1.4) blur(12px);
+  transition: box-shadow 0.25s ease;
+}
+
+.df-nav--sombra {
+  box-shadow: 0 6px 24px -14px rgba(126, 14, 85, 0.45);
+}
+
+.df-nav__barra {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: var(--df-nav-alto);
+}
+
+.df-nav__marca {
+  text-decoration: none;
+  flex: 0 0 auto;
+}
+
+/* ---------- logo en texto (mientras no subas el logo) ---------- */
+.df-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.df-logo__circulo {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--df-turquesa);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px var(--df-rosa);
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.df-logo__texto {
+  display: grid;
+  font-family: var(--df-script);
+  color: var(--df-rosa);
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.df-logo__texto small {
+  font-family: var(--df-display);
+  font-size: 0.68rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--df-magenta);
+  margin-top: 4px;
+}
+
+.df-logo--claro .df-logo__texto,
+.df-logo--claro .df-logo__texto small {
+  color: #fff;
+}
+
+.df-logo__img {
+  height: 50px;
+  width: auto;
+}
+
+/* ---------- enlaces ---------- */
+.df-nav__enlaces {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.df-nav__enlaces a {
+  display: block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--df-texto);
+  transition: background 0.2s, color 0.2s;
+}
+
+.df-nav__enlaces a:hover {
+  background: var(--df-lila);
+  color: var(--df-magenta);
+}
+
+.df-nav__ig-movil {
+  display: none;
+}
+
+.df-nav__acciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.df-nav__ig {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--df-lila);
+  color: var(--df-magenta);
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.df-nav__ig:hover {
+  background: var(--df-rosa);
+  color: #fff;
+}
+
+.df-nav__cta {
+  padding: 10px 18px;
+  font-size: 0.92rem;
+  box-shadow: 0 4px 0 var(--df-magenta-osc);
+}
+
+/* ---------- hamburguesa ---------- */
+.df-nav__hamburguesa {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--df-magenta);
+  padding: 12px 11px;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.df-nav__hamburguesa span {
+  display: block;
+  height: 3px;
+  border-radius: 3px;
+  background: #fff;
+  transition: transform 0.25s ease, opacity 0.2s;
+}
+
+.df-nav--abierto .df-nav__hamburguesa span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.df-nav--abierto .df-nav__hamburguesa span:nth-child(2) {
+  opacity: 0;
+}
+
+.df-nav--abierto .df-nav__hamburguesa span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+  .df-nav__hamburguesa {
+    display: flex;
+  }
+
+  .df-nav__ig {
+    display: none;
+  }
+
+  .df-nav__enlaces {
+    position: absolute;
+    top: 100%;
+    left: 12px;
+    right: 12px;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px;
+    border-radius: var(--df-radio);
+    background: #fff;
+    box-shadow: var(--df-sombra);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  }
+
+  .df-nav--abierto .df-nav__enlaces {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .df-nav__enlaces a {
+    padding: 14px 16px;
+    font-size: 1.05rem;
+  }
+
+  .df-nav__ig-movil {
+    display: block;
+    border-top: 2px dashed var(--df-lila-2);
+    margin-top: 6px;
+    padding-top: 6px;
+  }
+
+  .df-nav__ig-movil a {
+    color: var(--df-magenta);
+  }
+}
+
+@media (max-width: 400px) {
+  .df-nav__cta {
+    padding: 9px 13px;
+    font-size: 0.85rem;
+  }
+
+  .df-logo__circulo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .df-logo__texto {
+    font-size: 1.15rem;
+  }
+}

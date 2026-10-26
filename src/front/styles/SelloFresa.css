@@ -1,0 +1,126 @@
+.df-sello {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  border: 2px dashed rgba(255, 255, 255, 0.55);
+}
+
+.df-sello__svg {
+  width: 72%;
+  height: 72%;
+  overflow: visible;
+}
+
+/* Vacío: silueta punteada */
+.df-sello__cuerpo {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 2;
+  stroke-dasharray: 3 3;
+}
+
+.df-sello__hojas,
+.df-sello__tallo {
+  fill: rgba(255, 255, 255, 0.3);
+}
+
+.df-sello__numero {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding-top: 18%;
+  font-family: var(--df-display);
+  font-size: clamp(0.8rem, 3.4vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Lleno: fresa a color sobre círculo blanco */
+.df-sello--lleno {
+  background: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 0 rgba(126, 14, 85, 0.35);
+}
+
+.df-sello--lleno .df-sello__cuerpo {
+  fill: #ef2d55;
+  stroke: #c0163b;
+  stroke-width: 1.5;
+  stroke-dasharray: none;
+}
+
+.df-sello--lleno .df-sello__hojas {
+  fill: var(--df-hoja);
+}
+
+.df-sello--lleno .df-sello__tallo {
+  fill: #3f8a3f;
+}
+
+/* Premio */
+.df-sello--premio {
+  background: var(--df-amarillo);
+  border: 2px solid #fff;
+}
+
+.df-sello__regalo {
+  font-size: clamp(1rem, 4.5vw, 1.4rem);
+  color: var(--df-magenta);
+  animation: df-sello-latido 1.8s ease-in-out infinite;
+}
+
+.df-sello--premio.df-sello--lleno {
+  background: #fff;
+}
+
+/* Animación del sello recién ganado */
+.df-sello--nuevo {
+  animation: df-sello-pop 0.9s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+
+.df-sello--nuevo::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 3px solid var(--df-amarillo);
+  animation: df-sello-onda 1.2s ease-out 0.3s both;
+}
+
+@keyframes df-sello-pop {
+  0% {
+    transform: scale(0.2) rotate(-40deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.25) rotate(8deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes df-sello-onda {
+  from {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes df-sello-latido {
+  0%,
+  100% {
+    transform: scale(1) rotate(0);
+  }
+  50% {
+    transform: scale(1.12) rotate(-8deg);
+  }
+}

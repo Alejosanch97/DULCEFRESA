@@ -1,34 +1,60 @@
-
 import click
-from api.models import db, User
+from api.models import db, User, ProgramaFidelizacion, NfcTag, CategoriaMenu, ProductoMenu
 
 """
-In this file, you can add as many commands as you want using the @app.cli.command decorator
-Flask commands are usefull to run cronjobs or tasks outside of the API but sill in integration 
-with youy database, for example: Import the price of bitcoin every night as 12am
+Comandos de consola (se ejecutan con `pipenv run flask <comando>`):
+
+  flask crear-admin correo@x.com MiClave123 "Nombre"   -> usuario del personal para el panel
+  flask crear-tag "Caja principal"                       -> genera un tag NFC y muestra la URL a grabar
+  flask insert-test-data                                 -> programa + menú de ejemplo
 """
+
+
 def setup_commands(app):
-    
-    """ 
-    This is an example command "insert-test-users" that you can run from the command line
-    by typing: $ flask insert-test-users 5
-    Note: 5 is the number of users to add
-    """
-    @app.cli.command("insert-test-users") # name of our command
-    @click.argument("count") # argument of out command
-    def insert_test_users(count):
-        print("Creating test users")
-        for x in range(1, int(count) + 1):
-            user = User()
-            user.email = "test_user" + str(x) + "@test.com"
-            user.password = "123456"
-            user.is_active = True
-            db.session.add(user)
-            db.session.commit()
-            print("User: ", user.email, " created.")
 
-        print("All test users created")
+    @app.cli.command("crear-admin")
+    @click.argument("email")
+    @click.argument("password")
+    @click.argument("nombre", required=False)
+    def crear_admin(email, password, nombre=None):
+        email = email.strip().lower()
+        user = db.session.execute(db.select(User).where(User.email == email)).scalar_one_or_none()
+        if user is None:
+            user = User(email=email, is_active=True)
+            db.session.add(user)
+        user.nombre = nombre
+        user.set_password(password)
+        db.session.commit()
+        print(f"Admin listo: {email}")
+
+    @app.cli.command("crear-tag")
+    @click.argument("nombre", default="Caja principal")
+    @click.option("--url-base", default="https://TU-DOMINIO.com", help="Dominio del front")
+    def crear_tag(nombre, url_base):
+        tag = NfcTag(nombre=nombre)
+        db.session.add(tag)
+        db.session.commit()
+        print(f"Tag '{nombre}' creado.\nGraba esta URL en el NFC:\n  {url_base.rstrip('/')}/sello?t={tag.codigo}")
 
     @app.cli.command("insert-test-data")
     def insert_test_data():
-        pass
+        ProgramaFidelizacion.actual()
+
+        if db.session.execute(db.select(CategoriaMenu)).first():
+            print("Ya hay menú cargado, no se insertó nada.")
+            return
+
+        helados = CategoriaMenu(nombre="Helados", orden=1)
+        malteadas = CategoriaMenu(nombre="Malteadas", orden=2)
+        toppings = CategoriaMenu(nombre="Toppings", orden=3)
+        db.session.add_all([helados, malteadas, toppings])
+        db.session.add_all([
+            ProductoMenu(categoria=helados, nombre="Fresa con crema", descripcion="El clásico de la casa",
+                         precio=9000, destacado=True, orden=1),
+            ProductoMenu(categoria=helados, nombre="Cono 2 bolas", descripcion="Elige dos sabores",
+                         precio=12000, orden=2),
+            ProductoMenu(categoria=malteadas, nombre="Malteada de fresa", precio=14000, orden=1),
+            ProductoMenu(categoria=toppings, nombre="Chispas de chocolate", precio=2000, orden=1),
+        ])
+        db.session.commit()
+        print("Datos de prueba insertados.")

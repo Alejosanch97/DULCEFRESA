@@ -1,0 +1,203 @@
+/* ==========================================================================
+   Menú digital
+   ========================================================================== */
+
+.df-menu {
+  position: relative;
+}
+
+/* ---------- barra pegajosa: categorías + buscador ---------- */
+.df-menu__barra {
+  position: sticky;
+  top: var(--df-nav-alto);
+  z-index: 20;
+  display: grid;
+  gap: 10px;
+  padding: 12px 0;
+  margin-bottom: 18px;
+  background: linear-gradient(var(--df-crema) 80%, rgba(255, 248, 252, 0));
+}
+
+.df-menu__chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+
+.df-menu__chips::-webkit-scrollbar {
+  display: none;
+}
+
+.df-chip {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 2px solid var(--df-lila-2);
+  background: #fff;
+  color: var(--df-magenta);
+  font-weight: 900;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.df-chip:hover {
+  border-color: var(--df-rosa);
+}
+
+.df-chip--activo {
+  background: var(--df-magenta);
+  border-color: var(--df-magenta);
+  color: #fff;
+  box-shadow: 0 4px 0 var(--df-magenta-osc);
+  transform: translateY(-2px);
+}
+
+.df-menu__buscar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 2px solid var(--df-lila-2);
+  background: #fff;
+  color: var(--df-texto-suave);
+  max-width: 420px;
+}
+
+.df-menu__buscar:focus-within {
+  border-color: var(--df-rosa);
+  box-shadow: 0 0 0 4px rgba(236, 58, 143, 0.12);
+}
+
+.df-menu__buscar input {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  padding: 12px 0;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--df-texto);
+  outline: none;
+}
+
+/* ---------- grupos ---------- */
+.df-menu__grupo + .df-menu__grupo {
+  margin-top: 44px;
+}
+
+.df-menu__cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  padding: 8px 20px 8px 16px;
+  border-radius: 999px;
+  background: var(--df-magenta);
+  color: #fff;
+  font-family: var(--df-display);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 3.5vw, 1.6rem);
+  box-shadow: 0 5px 0 var(--df-magenta-osc);
+}
+
+.df-menu__cat i {
+  font-size: 0.9em;
+  color: var(--df-amarillo);
+}
+
+.df-menu__cat span {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  font-family: var(--df-body);
+  font-weight: 900;
+  font-size: 0.8rem;
+}
+
+.df-menu__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}
+
+/* ---------- vacío ---------- */
+.df-menu__vacio {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--df-texto-suave);
+  font-weight: 700;
+}
+
+.df-menu__vacio i {
+  font-size: 2.6rem;
+  color: var(--df-lila-2);
+  margin-bottom: 12px;
+}
+
+/* ---------- adiciones ---------- */
+.df-menu__adiciones {
+  margin-top: 44px;
+  padding: 22px;
+  border-radius: var(--df-radio-l);
+  background: var(--df-lila);
+  border: 2px dashed var(--df-rosa);
+}
+
+.df-menu__adiciones h3 {
+  margin: 0 0 14px;
+  font-family: var(--df-display);
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--df-magenta);
+}
+
+.df-menu__adiciones ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.df-menu__adiciones li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px 8px 14px;
+  border-radius: 999px;
+  background: #fff;
+  font-weight: 800;
+  font-size: 0.92rem;
+}
+
+.df-menu__adiciones strong {
+  font-family: var(--df-display);
+  font-weight: 400;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--df-turquesa);
+  color: #fff;
+}
+
+/* En celular: cards en 1 columna, más compactas */
+@media (max-width: 560px) {
+  .df-menu__grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}

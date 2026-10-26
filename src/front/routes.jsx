@@ -1,30 +1,35 @@
-// Import necessary components and functions from react-router-dom.
-
-import {
-    createBrowserRouter,
-    createRoutesFromElements,
-    Route,
-} from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, Route, Link } from "react-router-dom";
 import { Layout } from "./pages/Layout";
 import { Home } from "./pages/Home";
-import { Single } from "./pages/Single";
-import { Demo } from "./pages/Demo";
+import { Sello } from "./pages/Sello";
+import { MenuPage } from "./pages/Menupage";
+import { VideosPage } from "./components/Videospage";
+
+/*
+  Rutas de DULCE FRESA
+    /                -> Home tipo linktree: tarjeta + links + favoritos + Instagram + ubicación
+    /menu            -> Menú digital
+    /videos          -> Videos y fotos
+    /sello?t=CODIGO  -> La abre el tag NFC: suma una fresa o pide registro
+*/
+const NoEncontrado = () => (
+  <main className="df-pagina" style={{ textAlign: "center", paddingTop: 80 }}>
+    <h1 className="df-titulo">Se nos derritió esta página</h1>
+    <p className="df-subtitulo" style={{ margin: "0 auto 28px" }}>
+      La dirección no existe, pero los helados sí.
+    </p>
+    <Link to="/" className="df-btn">Volver al inicio</Link>
+  </main>
+);
 
 export const router = createBrowserRouter(
-    createRoutesFromElements(
-    // CreateRoutesFromElements function allows you to build route elements declaratively.
-    // Create your routes here, if you want to keep the Navbar and Footer in all views, add your new routes inside the containing Route.
-    // Root, on the contrary, create a sister Route, if you have doubts, try it!
-    // Note: keep in mind that errorElement will be the default page when you don't get a route, customize that page to make your project more attractive.
-    // Note: The child paths of the Layout element replace the Outlet component with the elements contained in the "element" attribute of these child paths.
-
-      // Root Route: All navigation will start from here.
-      <Route path="/" element={<Layout />} errorElement={<h1>Not found!</h1>} >
-
-        {/* Nested Routes: Defines sub-routes within the BaseHome component. */}
-        <Route path= "/" element={<Home />} />
-        <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
-        <Route path="/demo" element={<Demo />} />
-      </Route>
-    )
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />} errorElement={<NoEncontrado />}>
+      <Route index element={<Home />} />
+      <Route path="menu" element={<MenuPage />} />
+      <Route path="videos" element={<VideosPage />} />
+      <Route path="sello" element={<Sello />} />
+      <Route path="*" element={<NoEncontrado />} />
+    </Route>
+  )
 );
