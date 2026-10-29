@@ -784,3 +784,107 @@
     height: 38px;
   }
 }
+
+
+
+
+/* ==========================================================================
+   VERSIÓN MINIMALISTA (pegado al final: reemplaza lo de arriba)
+   ========================================================================== */
+/* fondo liso, sin chispitas */
+.df-lt {
+  background: linear-gradient(180deg, var(--df-lila) 0%, var(--df-crema) 55%);
+  background-attachment: scroll;
+}
+
+.df-lt__col {
+  gap: 18px;
+}
+
+/* logo limpio: sin anillo girando ni fresas flotando */
+.df-lt__logo {
+  width: 92px;
+  height: 92px;
+  margin-bottom: 6px;
+}
+
+.df-lt__logo-anillo,
+.df-lt__logo-fresa {
+  display: none;
+}
+
+.df-lt__logo-circulo {
+  inset: 0;
+  border-width: 4px;
+  box-shadow: 0 0 0 3px var(--df-rosa), 0 12px 22px -14px rgba(126, 14, 85, 0.6);
+  font-size: 2.1rem;
+}
+
+.df-lt__logo-circulo i {
+  animation: none;
+}
+
+/* título: entra una vez y se queda quieto (sin ola infinita) */
+.df-lt__titulo {
+  font-size: clamp(2.5rem, 12vw, 3.1rem);
+  text-shadow: none;
+}
+
+.df-lt__letra {
+  animation: df-lt-caer 0.7s cubic-bezier(0.2, 1.5, 0.4, 1) calc(var(--i) * 50ms) both;
+}
+
+.df-lt__sub {
+  font-family: var(--df-body);
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 2.5px;
+  color: var(--df-texto-suave);
+  margin-bottom: 12px;
+}
+
+.df-lt__como {
+  border: 1px solid var(--df-lila-2);
+  background: #fff;
+  font-size: 0.82rem;
+  padding: 8px 14px;
+}
+
+/* tarjeta sin cuenta: botón sin latido */
+.df-lt__cta-titulo {
+  font-size: 1.5rem;
+}
+
+.df-lt__cta-btn {
+  animation: none;
+  box-shadow: none;
+}
+
+/* links y ubicación: más planos */
+.df-lt__link,
+.df-lt__ubicacion {
+  border: 1px solid var(--df-lila-2);
+  background: #fff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  border-radius: 22px;
+  padding: 12px;
+}
+
+.df-lt__link-icono {
+  width: 48px;
+  height: 48px;
+  border-radius: 15px;
+  font-size: 1.2rem;
+}
+
+.df-lt__link-texto strong {
+  font-size: 1.12rem;
+}
+
+.df-lt__link-flecha {
+  width: 36px;
+  height: 36px;
+  background: transparent;
+}

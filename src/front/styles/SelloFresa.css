@@ -124,3 +124,49 @@
     transform: scale(1.12) rotate(-8deg);
   }
 }
+
+
+
+/* ==========================================================================
+   VERSIÓN MINIMALISTA (pegado al final: reemplaza lo de arriba)
+   Vacío = círculo suave con el número. Lleno = fresa sobre blanco.
+   ========================================================================== */
+.df-sello {
+  border: 0;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* el dibujo punteado de la fresa vacía ya no se muestra, solo el número */
+.df-sello:not(.df-sello--lleno) .df-sello__svg {
+  display: none;
+}
+
+.df-sello__numero {
+  padding-top: 0;
+  font-family: var(--df-body);
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.df-sello--lleno {
+  border: 0;
+  background: #fff;
+  box-shadow: none;
+}
+
+.df-sello--lleno .df-sello__svg {
+  width: 62%;
+  height: 62%;
+}
+
+.df-sello--premio {
+  border: 0;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.df-sello__regalo {
+  color: var(--df-rosa);
+  font-size: 1rem;
+  animation: none;
+}

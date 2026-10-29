@@ -237,7 +237,7 @@ export const ADICIONES = [
 ];
 
 // Formato de pesos colombianos: 14500 -> "$14.500"
-export const formatoPrecio = (valor) =>
+export const formatoPrecio = (valor) 
   valor == null ? "" : "$" + Number(valor).toLocaleString("es-CO", { maximumFractionDigits: 0 });
 
 // Precio "desde" para mostrar en tarjetas pequeñas
